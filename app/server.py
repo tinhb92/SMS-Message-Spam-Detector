@@ -4,7 +4,7 @@ import pickle
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.externals import joblib
-
+import uvicorn
 
 app = Flask(__name__)
 
@@ -47,4 +47,6 @@ def predict():
 
 
 if __name__ == '__main__':
-	app.run()
+# 	app.run()
+    if 'serve' in sys.argv:
+        uvicorn.run(app=app, host='0.0.0.0', port=5000, log_level="info")
